@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-between">
+  <div></div>
+  <button type="button" class="btn btn-light" (click)="backToList()">
+    Back
+  </button>
+</div>
+
+<form [formGroup]="searchForm">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      id="title"
+      class="form-control"
+      placeholder="search title"
+      formControlName="title"
+    />
+  </div>
+  <div class="d-flex mb-5">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="genre"
+        id="anime"
+        value="anime"
+        checked
+      />
+      <label class="form-check-label" for="anime"> Anime </label>
+    </div>
+    <div class="form-check ml-4">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="genre"
+        id="manga"
+        value="manga"
+      />
+      <label class="form-check-label" for="manga"> Manga </label>
+    </div>
+  </div>
+</form>
+
+<div class="d-flex justify-content-between">
+  <button class="btn btn-warning">Save</button>
+  <button class="btn btn-success" (click)="toResults()">Go</button>
+</div>
