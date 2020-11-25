@@ -1,0 +1,28 @@
+.each-grid {
+  width: 250px;
+}
+
+.middle {
+  position: absolute;
+  opacity: 0;
+  transition: 0.5s ease;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* -ms-transform: translate(-50%, -50%); */
+}
+
+.img-container:hover [id*="middle"] {
+  opacity: 1;
+}
+.img-container:hover [id*="image"] {
+  opacity: 0.3;
+}
+
+#image {
+  transition: 0.5s ease;
+}
+
+.back-btn {
+  max-height: 38px;
+}
