@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import {HttpClient, HttpClientModule} from '@angular/common/http'
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
@@ -8,9 +8,14 @@ import { Router } from '@angular/router';
 })
 export class ResultComponent implements OnInit {
 
-  constructor(private router: Router) { }
-
+  constructor(private router: Router, private activatedRoute:ActivatedRoute, private http: HttpClient) { }
+  searchedGenre: String =''
+  searchedQ: String =''
   ngOnInit(): void {
+ 
+    this.searchedGenre = this.activatedRoute.snapshot.params.genre
+    this.searchedQ = this.activatedRoute.snapshot.params.q
+    this.http.get('')
   }
   backToForm(){
     this.router.navigate(['/searchform'])

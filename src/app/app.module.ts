@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import {HttpClientModule} from '@angular/common/http'
 import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 
@@ -16,12 +16,14 @@ import { SearchListComponent } from './components/search-list.component';
 import { SearchFormComponent } from './components/search-form.component';
 import { ResultComponent } from './components/result.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SearchDatabase } from './components/search.database';
+
 
 const ROUTES: Routes = [
   {path: '', component: MainComponent},
   {path:'searchform', component: SearchFormComponent},
   {path: 'searchlist', component: SearchListComponent},
-  {path: 'result', component: ResultComponent},
+  {path: 'searchform/:genre/:q', component: ResultComponent},
   {path: '**', redirectTo:'/', pathMatch: 'full'}
 ]
 @NgModule({
@@ -39,9 +41,10 @@ const ROUTES: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    LottieModule.forRoot({player:playerFactory})
+    LottieModule.forRoot({player:playerFactory}),
+    HttpClientModule
   ],
-  providers: [],
+  providers: [SearchDatabase],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

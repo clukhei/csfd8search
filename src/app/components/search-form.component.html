@@ -6,6 +6,7 @@
 </div>
 
 <form [formGroup]="searchForm">
+  <h2>My Search ({{searchForm.get('genre').value}}) {{searchForm.get('title').value}}</h2>
   <div class="form-group">
     <label for="title">Title</label>
     <input
@@ -24,7 +25,7 @@
         name="genre"
         id="anime"
         value="anime"
-        checked
+        formControlName="genre"
       />
       <label class="form-check-label" for="anime"> Anime </label>
     </div>
@@ -35,13 +36,15 @@
         name="genre"
         id="manga"
         value="manga"
+        formControlName="genre"
       />
       <label class="form-check-label" for="manga"> Manga </label>
     </div>
   </div>
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-warning" [disabled]="searchForm.invalid" (click)="saveToDB()">Save</button>
+    <button class="btn btn-success" (click)="toResults()" [disabled]="searchForm.invalid">Go</button>
+  </div>
 </form>
 
-<div class="d-flex justify-content-between">
-  <button class="btn btn-warning">Save</button>
-  <button class="btn btn-success" (click)="toResults()">Go</button>
-</div>
+

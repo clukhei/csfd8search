@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { normalizeQ, SearchDatabase } from './search.database';
 
 @Component({
   selector: 'app-search-form',
@@ -9,19 +10,27 @@ import { Router } from '@angular/router';
 })
 export class SearchFormComponent implements OnInit {
 
-  constructor(private router: Router, private fb: FormBuilder) { }
+  constructor(private router: Router, private fb: FormBuilder, private searchDB: SearchDatabase) { }
   searchForm: FormGroup
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
-      title: this.fb.control('' ,[Validators.required])
+      title: this.fb.control('' ,[Validators.required]),
+      genre: this.fb.control('')
     })
   }
   backToList() {
     this.router.navigate(['/searchlist'])
   }
   toResults(){
-    this.router.navigate(['/result'])
+    const genre =  this.searchForm.get('genre').value
+    const q = normalizeQ(this.searchForm.get('title').value)
+    this.router.navigate(['/searchform', genre, q])
   }
 
+  saveToDB(){
+    this.searchDB.saveSearch(this.searchForm.value)
+    this.toResults()
+   
+  }
 }
