@@ -5,7 +5,7 @@ import { Search } from './models'
 export const normalizeQ = (q: string) => q.trim().toLowerCase()
 @Injectable()
 export class SearchDatabase extends Dexie {
-    private search: Dexie.Table<Search, string>
+    private search: Dexie.Table<Search, number>
     constructor() {
         super('searchdb')
         this.version(1).stores({

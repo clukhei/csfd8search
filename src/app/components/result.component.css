@@ -9,6 +9,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
   /* -ms-transform: translate(-50%, -50%); */
 }
 
@@ -25,4 +26,10 @@
 
 .back-btn {
   max-height: 38px;
+}
+
+.synopsis{
+  z-index: 10;
+  opacity: 1;
+  size:10px;
 }

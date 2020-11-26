@@ -15,22 +15,22 @@ export class SearchFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchForm = this.fb.group({
-      title: this.fb.control('' ,[Validators.required]),
-      genre: this.fb.control('')
+      title: this.fb.control('', [Validators.required]),
+      genre: this.fb.control('', [Validators.required])
     })
   }
   backToList() {
     this.router.navigate(['/searchlist'])
   }
-  toResults(){
-    const genre =  this.searchForm.get('genre').value
+  toResults() {
+    const genre = this.searchForm.get('genre').value
     const q = normalizeQ(this.searchForm.get('title').value)
     this.router.navigate(['/searchform', genre, q])
   }
 
-  saveToDB(){
+  saveToDB() {
     this.searchDB.saveSearch(this.searchForm.value)
     this.toResults()
-   
+
   }
 }
